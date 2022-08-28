@@ -10,7 +10,7 @@
     <vxe-column field="age" title="Age"></vxe-column>
   </vxe-table>
 
-  <vxe-grid v-bind="gridOptions">
+  <vxe-grid v-bind="gridOptions" size="mini">
     <template #name="{ row }">
       <span>自定义插槽模板 {{ row.name }}</span>
     </template>
