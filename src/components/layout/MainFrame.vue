@@ -15,11 +15,11 @@
         <splitpanes class="default-theme" horizontal style="height: 100%">
           <pane>
             <splitpanes>
-              <pane size="10">
+              <pane size="20">
                 <!-- 中间左边区域 -->
                 <splitpanes horizontal>
                   <pane>
-                    中间左边区域上
+                    <DbNav></DbNav>
                   </pane>
                   <pane>
                     中间左边区域下

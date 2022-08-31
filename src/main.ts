@@ -11,6 +11,9 @@ import VXETable from 'vxe-table'
 import 'vxe-table/lib/style.css'
 
 import './style/style.css'
+// @ts-ignore
+import compRegister from './components/comp-register.js'
+import register from './register.js'
 
 
 const app = createApp(App);
@@ -20,4 +23,6 @@ app.component("Pane", Pane);
 
 app.use(ElementPlus, {size: 'small'})
     .use(VXETable)
+    .use(compRegister)
+    .use(register)
     .mount("#app");
