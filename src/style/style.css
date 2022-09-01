@@ -1,17 +1,19 @@
-.fill-height {
-    height: 100%;
-}
-
-.fill-width {
-    width: 100%;
-}
-
-.flex-box {
+.box-flex {
     display: flex;
     flex-flow: row nowrap;
 }
 
-.flex-column {
+.box-column {
     flex-direction: column;
+}
+
+.box-fill-height {
+    height: 0;
+    flex: 1 1;
+}
+
+.box-fill-width {
+    width: 0;
+    flex: 1 1;
 }
 

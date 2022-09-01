@@ -1,5 +1,5 @@
 <template>
-  <div class="main-frame flex-box flex-column fill-height">
+  <div class="main-frame box-flex box-column" style="height: 100%">
     <!-- 顶部区域 -->
     <div class="top-area" style="background-color: #7594af">
       top
@@ -7,11 +7,11 @@
     </div>
 
     <!-- 中间区域 -->
-    <div class="middle-area flex-box fill-height">
+    <div class="middle-area box-flex box-fill-height">
       <div class="left-bar" style="background-color: #c49fdc">
         left
       </div>
-      <div class="main-area fill-width">
+      <div class="main-area box-fill-width">
         <splitpanes class="default-theme" horizontal style="height: 100%">
           <pane>
             <splitpanes>

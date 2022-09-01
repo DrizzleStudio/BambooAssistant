@@ -1,0 +1,9 @@
+.el-tree {
+    width: 100%;
+    overflow: visible;
+}
+
+.el-tree>.el-tree-node {
+    display: inline-block;
+    min-width: 100%;
+}

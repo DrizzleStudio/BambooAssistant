@@ -11,6 +11,7 @@ import VXETable from 'vxe-table'
 import 'vxe-table/lib/style.css'
 
 import './style/style.css'
+import './style/cover-element-plus.css'
 // @ts-ignore
 import compRegister from './components/comp-register.js'
 import register from './register.js'

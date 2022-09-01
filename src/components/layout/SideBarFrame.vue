@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-top"></div>
+  <div class="sidebar-header"></div>
   <div class="sidebar-body" style="height:50%">
     <div>
       <slot name="scrollbarTop"></slot>

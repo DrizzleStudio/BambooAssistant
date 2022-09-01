@@ -53,7 +53,7 @@ const data: Tree[] = [
         children: [
           {
             id: 9,
-            label: 'Level three 1111111111111122222222222222222222221111111111111111111111',
+            label: 'Level three 11111111111111222222222222222222222211111111111111111111112',
           },
           {
             id: 10,
@@ -96,9 +96,5 @@ const data: Tree[] = [
 </script>
 
 <style scoped>
-
-.el-tree{
-  display: inline-block;
-}
 
 </style>
