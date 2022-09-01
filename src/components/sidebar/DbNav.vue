@@ -97,4 +97,8 @@ const data: Tree[] = [
 
 <style scoped>
 
+.el-tree{
+  display: inline-block;
+}
+
 </style>
