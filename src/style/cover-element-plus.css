@@ -3,7 +3,8 @@
     overflow: visible;
 }
 
-.el-tree>.el-tree-node {
+.el-tree > .el-tree-node {
     display: inline-block;
     min-width: 100%;
+    padding-right: 16px;
 }

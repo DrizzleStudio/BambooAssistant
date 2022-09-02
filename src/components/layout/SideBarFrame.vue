@@ -1,12 +1,14 @@
 <template>
-  <div class="sidebar-header"></div>
-  <div class="sidebar-body" style="height:50%">
-    <div>
-      <slot name="scrollbarTop"></slot>
+  <div class="sidebar-frame box-flex box-column">
+    <div class="sidebar-header"></div>
+    <div class="sidebar-body box-fill-height box-flex box-column">
+      <div>
+        <slot name="scrollbarTop"></slot>
+      </div>
+      <el-scrollbar class="box-fill-height" height="100%">
+        <slot></slot>
+      </el-scrollbar>
     </div>
-    <el-scrollbar height="100%">
-      <slot></slot>
-    </el-scrollbar>
   </div>
 </template>
 
@@ -14,5 +16,8 @@
 </script>
 
 <style scoped>
-
+ .sidebar-frame{
+   height: 100%;
+   width: 100%;
+ }
 </style>
