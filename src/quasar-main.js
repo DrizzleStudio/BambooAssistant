@@ -1,12 +1,13 @@
 import {Quasar} from 'quasar'
 import quasarLang from 'quasar/lang/zh-CN'
-import quasarIconSet from 'quasar/icon-set/fontawesome-v6'
+import quasarIconSet from 'quasar/icon-set/material-symbols-outlined'
 
 // Import icon libraries
-import '@quasar/extras/fontawesome-v6/fontawesome-v6.css'
+import '@quasar/extras/material-symbols-outlined/material-symbols-outlined.css'
 
 // Import Quasar css
 import 'quasar/dist/quasar.css'
+import './style/cover-quasar.css'
 
 
 // export default (app) => {

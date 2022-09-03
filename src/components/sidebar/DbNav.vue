@@ -1,98 +1,105 @@
 <template>
   <SideBarFrame>
     <template #scrollbarTop>
-      <el-input v-model="filterText" placeholder="Filter keyword"/>
+      <QInput ref="filterRef" filled v-model="filter" label="Filter">
+        <template v-slot:append>
+          <QIcon v-if="filter !== ''" name="sym_o_close" class="cursor-pointer" @click="resetFilter"/>
+        </template>
+      </QInput>
     </template>
 
-    <el-tree
-        ref="treeRef"
-        class="filter-tree"
-        :data="data"
-        :props="defaultProps"
-        default-expand-all
-        :filter-node-method="filterNode"
+    <QTree
+        :nodes="simple"
+        node-key="nodeId"
+        :filter="filter"
+        label-key="label"
+        v-model:selected="selected"
+        v-model:expanded="expanded"
     />
   </SideBarFrame>
 </template>
 
 <script setup lang="ts">
-import {ref, watch} from 'vue'
-import {ElTree} from 'element-plus'
+import {ref, watch, nextTick} from 'vue'
 
-interface Tree {
-  id: number
-  label: string
-  children?: Tree[]
-}
+const filter = ref('')
+const filterRef = ref()
+const selected = ref(null)
 
-const filterText = ref('')
-const treeRef = ref<InstanceType<typeof ElTree>>()
-
-const defaultProps = {
-  children: 'children',
-  label: 'label',
-}
-
-watch(filterText, (val) => {
-  treeRef.value!.filter(val)
+let expanded = ref([])
+nextTick(() => {
+  expanded.value = ['1', '2', '21']
 })
-
-const filterNode = (value: string, data: any): boolean => {
-  if (!value) return true
-  return data.label.includes(value)
-}
-
-const data: Tree[] = [
+let simple = [
   {
-    id: 1,
-    label: 'Level one 1',
+    nodeId: '1',
+    label: '数据库服务器-01',
+    selectable: false,
     children: [
       {
-        id: 4,
-        label: 'Level two 1-1',
+        nodeId: '11',
+        label: '数据库-01',
+      },
+      {
+        nodeId: '12',
+        label: '数据库-02',
+        disabled: true,
+      },
+      {
+        nodeId: '13',
+        label: '数据库-03',
+      }
+    ]
+  },
+  {
+    nodeId: '2',
+    label: '数据库服务器-02',
+    selectable: false,
+    children: [
+      {
+        nodeId: '21',
+        label: '数据库-02-01',
+        selectable: false,
         children: [
           {
-            id: 9,
-            label: 'Level three 11111111111111222222222222222222222211111111111111111111112',
+            nodeId: '211',
+            label: '数据库-02-011'
           },
           {
-            id: 10,
-            label: 'Level three 1-1-2',
+            nodeId: '212', label: '数据库-02-021'
           },
-        ],
+          {
+            nodeId: '213',
+            label: '数据库-02-1'
+          }
+        ]
       },
-    ],
+      {
+        nodeId: '22', label: '数据库-02-02'
+      },
+      {
+        nodeId: '23',
+        label: '数据库-02-03aaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbccccccccccccccccccccddddddddddddddddddddeeeeeeeeeeeeee'
+      }
+    ]
   },
   {
-    id: 2,
-    label: 'Level one 2',
+    nodeId: '3',
+    label: '数据库服务器-03',
     children: [
       {
-        id: 5,
-        label: 'Level two 2-1',
+        nodeId: '31', label: '数据库-02-01'
       },
-      {
-        id: 6,
-        label: 'Level two 2-2',
-      },
-    ],
-  },
-  {
-    id: 3,
-    label: 'Level one 3',
-    children: [
-      {
-        id: 7,
-        label: 'Level two 3-1',
-      },
-      {
-        id: 8,
-        label: 'Level two 3-2',
-      },
-    ],
-  },
+      {nodeId: '32', label: '数据库-02-02'},
+      {nodeId: '33', label: '数据库-02-03'}
+    ]
+  }
 ]
 
+function resetFilter() {
+  filter.value = ''
+  filterRef.value.focus()
+}
 </script>
 
 <style scoped>
