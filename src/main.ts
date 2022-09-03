@@ -16,6 +16,7 @@ import './style/cover-element-plus.css'
 import compRegister from './components/comp-register.js'
 import register from './register.js'
 
+import QuasarMain from './quasar-main.js'
 
 const app = createApp(App);
 
@@ -26,4 +27,5 @@ app.use(ElementPlus, {size: 'small'})
     .use(VXETable)
     .use(compRegister)
     .use(register)
+    .use(QuasarMain)
     .mount("#app");

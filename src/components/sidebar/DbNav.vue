@@ -1,7 +1,7 @@
 <template>
   <SideBarFrame>
     <template #scrollbarTop>
-      <el-input v-model="filterText" placeholder="Filter keyword" />
+      <el-input v-model="filterText" placeholder="Filter keyword"/>
     </template>
 
     <el-tree
@@ -16,8 +16,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import { ElTree } from 'element-plus'
+import {ref, watch} from 'vue'
+import {ElTree} from 'element-plus'
 
 interface Tree {
   id: number
@@ -37,7 +37,7 @@ watch(filterText, (val) => {
   treeRef.value!.filter(val)
 })
 
-const filterNode = (value: string, data: Tree) => {
+const filterNode = (value: string, data: any): boolean => {
   if (!value) return true
   return data.label.includes(value)
 }
