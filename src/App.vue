@@ -1,6 +1,5 @@
 <template>
   <MainFrame></MainFrame>
-
 </template>
 
 <script setup lang="ts">

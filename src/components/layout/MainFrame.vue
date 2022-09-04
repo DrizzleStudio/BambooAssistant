@@ -32,8 +32,9 @@
               <pane>
                 <splitpanes horizontal>
                   <pane>
+                    <MainPage></MainPage>
 <!--                    <Demo></Demo>-->
-                    <MonacoDemo></MonacoDemo>
+<!--                    <MonacoDemo></MonacoDemo>-->
                   </pane>
                   <pane>
                     <TableDemo></TableDemo>
@@ -90,6 +91,7 @@
 <script setup>
 import Demo from '/src/components/Demo.vue'
 import MonacoDemo from '/src/components/MonacoDemo.vue'
+import MainPage from '/src/components/layout/MainPage.vue'
 import TableDemo from '/src/components/TableDemo.vue'
 
 
