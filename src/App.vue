@@ -1,9 +1,9 @@
 <template>
-  <MainFrame></MainFrame>
+  <MainPage></MainPage>
 </template>
 
 <script setup lang="ts">
-import MainFrame from './components/layout/MainFrame.vue'
+import MainPage from './views/MainPage.vue'
 
 </script>
 

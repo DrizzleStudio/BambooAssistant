@@ -15,18 +15,18 @@
 </template>
 
 <script>
-import { defineComponent,ref } from 'vue'
-import { Codemirror } from 'vue-codemirror'
+import {defineComponent, ref} from 'vue'
+import {Codemirror} from 'vue-codemirror'
 // import { javascript } from '@codemirror/lang-javascript'
 import {sql} from '@codemirror/lang-sql'
-import { oneDark } from '@codemirror/theme-one-dark'
+import {oneDark} from '@codemirror/theme-one-dark'
 
 export default defineComponent({
   components: {
     Codemirror
   },
   setup() {
-    const code = ref(`console.log('Hello, world!')`)
+    const code = ref(`select * from my_table`)
     // const extensions = [javascript(), oneDark]
     const extensions = [sql()]
 

@@ -1,10 +1,10 @@
 <template>
   <SideBarFrame>
     <template #scrollbarTop>
-      <QInput ref="filterRef" filled v-model="filter" label="Filter">
-        <template v-slot:append>
-          <QIcon v-if="filter !== ''" name="sym_o_close" class="cursor-pointer" @click="resetFilter"/>
-        </template>
+      <QInput ref="filterRef" filled v-model="filter" label="Filter" clearable dense>
+        <!--        <template v-slot:append>-->
+        <!--          <QIcon v-if="filter !== ''" name="sym_o_close" class="cursor-pointer" @click="resetFilter"/>-->
+        <!--        </template>-->
       </QInput>
     </template>
 

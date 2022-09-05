@@ -5,10 +5,12 @@
  *  这里的组件更像是插件（plugin）
  */
 
-import DbNav from './components/sidebar/DbNav.vue'
+import DbNav from './components/sidebar/DbNav.vue';
+import DbObjects from './components/sidebar/DbObjects.vue';
 
 export default {
     install(Vue) {
         Vue.component("DbNav", DbNav);
+        Vue.component("DbObjects", DbObjects);
     }
 }

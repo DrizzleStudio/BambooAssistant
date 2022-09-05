@@ -22,7 +22,7 @@
                     <DbNav></DbNav>
                   </pane>
                   <pane>
-                    中间左边区域下
+                    <DbObjects></DbObjects>
                   </pane>
                 </splitpanes>
 
@@ -30,16 +30,7 @@
 
               <!-- 中间中心区域 -->
               <pane>
-                <splitpanes horizontal>
-                  <pane>
-                    <MainPage></MainPage>
-<!--                    <Demo></Demo>-->
-<!--                    <MonacoDemo></MonacoDemo>-->
-                  </pane>
-                  <pane>
-                    <TableDemo></TableDemo>
-                  </pane>
-                </splitpanes>
+                <CenterArea></CenterArea>
               </pane>
 
               <!-- 中间右边区域 -->
@@ -89,10 +80,7 @@
 </template>
 
 <script setup>
-import Demo from '/src/components/Demo.vue'
-import MonacoDemo from '/src/components/MonacoDemo.vue'
-import MainPage from '/src/components/layout/MainPage.vue'
-import TableDemo from '/src/components/TableDemo.vue'
+import CenterArea from '/src/components/layout/CenterArea.vue'
 
 
 </script>

@@ -1,4 +1,4 @@
-import SideBarFrame from './layout/SideBarFrame.vue'
+import SideBarFrame from './layout/SideBarFrame.vue';
 
 export default {
     install(Vue) {

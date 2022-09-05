@@ -1,4 +1,5 @@
 <template>
+
   <QTabs
       v-model="tab"
       dense
@@ -30,15 +31,14 @@
     <QTab name="movies19" label="Movies19"/>
   </QTabs>
 
-  <div style="background-color: #ffffff;height: calc(100% - 48px)">
-    <MonacoDemo></MonacoDemo>
-  </div>
+  <SqlEdit></SqlEdit>
 
 </template>
 
 <script setup>
 import {ref} from 'vue';
-import MonacoDemo from '/src/components/MonacoDemo.vue';
+import SqlEdit from '/src/components/center-area/SqlEdit.vue';
+
 
 let tab = ref('mails');
 
