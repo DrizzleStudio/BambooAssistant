@@ -1,5 +1,5 @@
 <template>
-  <SideBarFrame>
+  <SideBarFrame title="Databases">
     <template #scrollbarTop>
       <QInput ref="filterRef" filled v-model="filter" label="Filter" clearable dense>
         <!--        <template v-slot:append>-->
