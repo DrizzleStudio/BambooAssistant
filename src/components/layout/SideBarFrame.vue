@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar-frame box-flex box-column">
-    <QToolbar class="bg-grey-7 text-white" style="height: 28px;min-height: 10px;">
+    <QToolbar class="bg-grey-5 text-grey-9" style="height: 28px;min-height: 10px;">
       <QBtn flat round dense icon="sym_o_menu" size="sm"/>
       <QToolbarTitle>
         {{ title }}
