@@ -1,5 +1,5 @@
 <template>
-  <SideBarFrame title="Objects">
+  <SidebarItemFrame title="Objects">
     <QInput outlined v-model="model" label="Filter" clearable dense></QInput>
     <QOptionGroup
         v-model="group"
@@ -13,7 +13,7 @@
         dense
         node-key="label"
     />
-  </SideBarFrame>
+  </SidebarItemFrame>
 </template>
 
 <script setup>

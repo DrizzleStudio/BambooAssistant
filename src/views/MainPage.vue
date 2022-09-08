@@ -15,18 +15,9 @@
         <splitpanes class="default-theme" horizontal style="height: 100%">
           <pane>
             <splitpanes>
-              <pane size="20">
-                <!-- 中间左边区域 -->
-                <splitpanes horizontal>
-                  <pane>
-                    <DbNav></DbNav>
-                  </pane>
-                  <pane>
-                    <DbObjects></DbObjects>
-                  </pane>
-                </splitpanes>
 
-              </pane>
+                <!-- 中间左边区域 -->
+                <LeftSidebarArea></LeftSidebarArea>
 
               <!-- 中间中心区域 -->
               <pane>
@@ -80,6 +71,7 @@
 </template>
 
 <script setup>
+import LeftSidebarArea from '/src/views/sidebar-area/LeftSidebarArea.vue'
 import CenterArea from '/src/components/layout/CenterArea.vue'
 
 

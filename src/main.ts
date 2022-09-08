@@ -1,5 +1,6 @@
 import {createApp} from "vue";
 import App from "./App.vue";
+import {createPinia} from 'pinia';
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 // @ts-ignore
@@ -23,6 +24,7 @@ app.component("Splitpanes", Splitpanes);
 app.component("Pane", Pane);
 
 app.use(ElementPlus, {size: 'small'})
+    .use(createPinia())
     .use(VXETable)
     .use(compRegister)
     .use(register)

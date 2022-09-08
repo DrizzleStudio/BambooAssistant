@@ -1,5 +1,5 @@
 <template>
-  <SideBarFrame title="Databases">
+  <SidebarItemFrame title="Databases">
     <template #scrollbarTop>
       <QInput ref="filterRef" filled v-model="filter" label="Filter" clearable dense>
         <!--        <template v-slot:append>-->
@@ -16,7 +16,7 @@
         v-model:selected="selected"
         v-model:expanded="expanded"
     />
-  </SideBarFrame>
+  </SidebarItemFrame>
 </template>
 
 <script setup lang="ts">
