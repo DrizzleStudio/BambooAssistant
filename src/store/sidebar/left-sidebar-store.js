@@ -7,16 +7,25 @@ export const userLeftSidebarStore = defineStore('leftSidebarStore', {
             isOpen: true,
             width: 20,
             activeIndex: 0,
-            componentList: [
+            activeComponentList: [{
+                name: 'DbNav',
+                title: 'Databases'
+            },
+            {
+                name: 'DbObjects',
+                title: 'Objects'
+            }],
+            componentListOne: [
                 {
                     name: 'DatabaseManage',
                     title: 'DB Manage'
                 }
-            ]
+            ],
+            componentListTwo: []
         }
     },
     getters: {
-        getActiveComponent(state){
+        getActiveComponent(state) {
             return state.componentList[state.activeIndex];
         }
     },

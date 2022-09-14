@@ -8,14 +8,7 @@
       <QBtn flat round dense icon="sym_o_remove" size="sm" @click="leftSidebarStore.isOpen = false"/>
     </QToolbar>-->
     <SidebarFrame isHorizontal :sidebarStore="leftSidebarStore">
-      <splitpanes horizontal="isHorizontal">
-        <pane>
-          <slot name="DbNav"></slot>
-        </pane>
-        <pane>
-          <slot name="DbObjects"></slot>
-        </pane>
-      </splitpanes>
+
     </SidebarFrame>
 
   </pane>
@@ -27,8 +20,7 @@ import SidebarFrame from '/src/components/layout/SidebarFrame.vue';
 import {userLeftSidebarStore} from '/src/store/sidebar/left-sidebar-store.js';
 
 let leftSidebarStore = userLeftSidebarStore()
-let activeSidebar =   leftSidebarStore.getActiveComponent
-console.log(leftSidebarStore.title)
+console.log(leftSidebarStore)
 </script>
 
 <style scoped>

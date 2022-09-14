@@ -1,12 +1,12 @@
 <template>
-  <SidebarItemFrame title="Databases">
-    <template #scrollbarTop>
-      <QInput ref="filterRef" filled v-model="filter" label="Filter" clearable dense>
+<!--  <SidebarItemFrame title="Databases">-->
+<!--    <template #scrollbarTop>-->
+<!--      <QInput ref="filterRef" filled v-model="filter" label="Filter" clearable dense>-->
         <!--        <template v-slot:append>-->
         <!--          <QIcon v-if="filter !== ''" name="sym_o_close" class="cursor-pointer" @click="resetFilter"/>-->
         <!--        </template>-->
-      </QInput>
-    </template>
+<!--      </QInput>-->
+<!--    </template>-->
 
     <QTree
         :nodes="simple"
@@ -16,7 +16,7 @@
         v-model:selected="selected"
         v-model:expanded="expanded"
     />
-  </SidebarItemFrame>
+<!--  </SidebarItemFrame>-->
 </template>
 
 <script setup lang="ts">

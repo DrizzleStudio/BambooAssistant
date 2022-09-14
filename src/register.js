@@ -7,8 +7,13 @@
 
 import DatabaseManage  from '/src/components/sidebar/database-manage/DatabaseManage.vue'
 
+import DbNav  from '/src/components/sidebar/database-manage/DbNav.vue'
+import DbObjects  from '/src/components/sidebar/database-manage/DbObjects.vue'
+
 export default {
     install(Vue) {
         Vue.component("DatabaseManage", DatabaseManage);
+        Vue.component("DbNav", DbNav);
+        Vue.component("DbObjects", DbObjects);
     }
 }

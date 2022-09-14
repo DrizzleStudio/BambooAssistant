@@ -1,14 +1,30 @@
 <template>
-  <pane :size="sidebarStore.width" v-if="sidebarStore.isOpen">
-    <splitpanes horizontal="isHorizontal">
-      <pane>
-        <slot name="DbNav"></slot>
-      </pane>
-      <pane>
-        <slot name="DbObjects"></slot>
-      </pane>
-    </splitpanes>
-  </pane>
+  <splitpanes horizontal>
+    <pane v-for="(activeComponent,index) in sidebarStore.activeComponentList">
+
+      <div class="sidebar-frame box-flex box-column">
+        <QToolbar class="bg-grey-5 text-grey-9" style="height: 28px;min-height: 10px;">
+          <QBtn flat round dense icon="sym_o_menu" size="sm"/>
+          <QToolbarTitle>
+            {{ activeComponent.title }}
+          </QToolbarTitle>
+          <QBtn flat round dense icon="sym_o_more_vert" size="sm"/>
+        </QToolbar>
+
+        <div class="sidebar-header">
+        </div>
+        <div class="sidebar-body box-fill-height box-flex box-column">
+          <div>
+            <slot name="scrollbarTop"></slot>
+          </div>
+          <QScrollArea style="height: 100%;">
+            <component :is="activeComponent.name"></component>
+          </QScrollArea>
+        </div>
+      </div>
+
+    </pane>
+  </splitpanes>
 </template>
 
 <script setup>
@@ -27,5 +43,10 @@ defineProps({
 </script>
 
 <style scoped>
+
+.sidebar-frame {
+  height: 100%;
+  width: 100%;
+}
 
 </style>
