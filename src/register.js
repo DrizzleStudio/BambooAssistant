@@ -10,10 +10,15 @@ import DatabaseManage  from '/src/components/sidebar/database-manage/DatabaseMan
 import DbNav  from '/src/components/sidebar/database-manage/DbNav.vue'
 import DbObjects  from '/src/components/sidebar/database-manage/DbObjects.vue'
 
+import DbNavTree  from '/src/components/sidebar/database-manage/DbNavTree.vue'
+import DbNavSearch  from '/src/components/sidebar/database-manage/DbNavSearch.vue'
+
 export default {
     install(Vue) {
         Vue.component("DatabaseManage", DatabaseManage);
-        Vue.component("DbNav", DbNav);
         Vue.component("DbObjects", DbObjects);
+        Vue.component("DbNav", DbNav);
+        Vue.component("DbNavTree", DbNavTree);
+        Vue.component("DbNavSearch", DbNavSearch);
     }
 }

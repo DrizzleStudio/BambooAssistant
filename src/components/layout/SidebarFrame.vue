@@ -15,10 +15,18 @@
         </div>
         <div class="sidebar-body box-fill-height box-flex box-column">
           <div>
-            <slot name="scrollbarTop"></slot>
+            <component :ref="(el)=>{
+                          activeComponent.bodyScrollbarTop.ref = el
+                        }"
+                       :is="activeComponent.bodyScrollbarTop.name"
+                       :sidebar-api="activeComponent"></component>
           </div>
           <QScrollArea style="height: 100%;">
-            <component :is="activeComponent.name"></component>
+            <component :ref="(el)=>{
+                          activeComponent.body.ref = el
+                        }"
+                       :is="activeComponent.body.name"
+                       :sidebar-api="activeComponent"></component>
           </QScrollArea>
         </div>
       </div>
