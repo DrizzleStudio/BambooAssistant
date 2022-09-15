@@ -1,36 +1,44 @@
 <template>
-  <div class="sidebar-frame box-flex box-column">
-    <QToolbar class="bg-grey-5 text-grey-9" style="height: 28px;min-height: 10px;">
-      <QBtn flat round dense icon="sym_o_menu" size="sm"/>
-      <QToolbarTitle>
-        {{ title }}
-      </QToolbarTitle>
-      <QBtn flat round dense icon="sym_o_more_vert" size="sm"/>
-    </QToolbar>
+  <pane>
 
-    <div class="sidebar-header">
-    </div>
-    <div class="sidebar-body box-fill-height box-flex box-column">
-      <div>
-        <slot name="scrollbarTop"></slot>
+    <div class="sidebar-frame box-flex box-column">
+      <QToolbar class="bg-grey-5 text-grey-9" style="height: 28px;min-height: 10px;">
+        <QBtn flat round dense icon="sym_o_menu" size="sm"/>
+        <QToolbarTitle>
+          {{ activeComponent.title }}
+        </QToolbarTitle>
+        <QBtn flat round dense icon="sym_o_more_vert" size="sm"/>
+      </QToolbar>
+
+      <div class="sidebar-header">
       </div>
-
-      <QScrollArea style="height: 100%;">
-        <slot></slot>
-      </QScrollArea>
+      <div class="sidebar-body box-fill-height box-flex box-column">
+        <div>
+          <component :ref="(el)=>{
+                          activeComponent.scrollbarTop.ref = el
+                        }"
+                     :is="activeComponent.scrollbarTop.name"
+                     :sidebar-api="activeComponent"></component>
+        </div>
+        <QScrollArea style="height: 100%;">
+          <component :ref="(el)=>{
+                          activeComponent.scrollbarBody.ref = el
+                        }"
+                     :is="activeComponent.scrollbarBody.name"
+                     :sidebar-api="activeComponent"></component>
+        </QScrollArea>
+      </div>
     </div>
-  </div>
+
+  </pane>
 </template>
 
 <script setup>
 import {ref, defineProps} from 'vue';
 
 defineProps({
-  title:{
-    type:String,
-    default: ()=>{
-      return "";
-    }
+  activeComponent: {
+    required: true
   }
 })
 

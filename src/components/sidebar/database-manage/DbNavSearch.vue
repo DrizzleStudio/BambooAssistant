@@ -19,7 +19,7 @@ const filter = ref('')
 const filterRef = ref()
 
 watch(filter, (newVal, oldVal) => {
-      props.sidebarApi.body.ref.changeFilter(newVal)
+      props.sidebarApi.scrollbarBody.ref.changeFilter(newVal)
     }
 )
 

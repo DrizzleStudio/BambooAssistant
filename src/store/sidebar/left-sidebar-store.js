@@ -1,5 +1,4 @@
 import {defineStore} from 'pinia'
-import {ref} from 'vue'
 
 export const userLeftSidebarStore = defineStore('leftSidebarStore', {
     state() {
@@ -8,30 +7,12 @@ export const userLeftSidebarStore = defineStore('leftSidebarStore', {
             isOpen: true,
             width: 20,
             activeIndex: 0,
-            activeComponentList: [{
-                id: "DbNav",
-                // name: 'DbNav',
-                title: 'Databases',
-                titleLeft: {
-                    name: "",
-                },
-                titleRight: {
-                    name: "",
-                },
-                bodyScrollbarTop: {
-                    name: "DbNavSearch",
-                    ref: new ref()
-                },
-                body: {
-                    name: "DbNavTree",
-                    ref: new ref()
-                },
-            }],
+            activeComponentList: [
+                "DbNav", "DbObjects"
+            ],
             componentListOne: [
-                {
-                    name: 'DatabaseManage',
-                    title: 'DB Manage',
-                }
+                "DbNav",
+                "DbObjects",
             ],
             componentListTwo: []
         }
