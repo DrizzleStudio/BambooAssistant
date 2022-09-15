@@ -18,14 +18,14 @@
                           activeComponent.scrollbarTop.ref = el
                         }"
                      :is="activeComponent.scrollbarTop.name"
-                     :sidebar-api="activeComponent"></component>
+          ></component>
         </div>
         <QScrollArea style="height: 100%;">
           <component :ref="(el)=>{
                           activeComponent.scrollbarBody.ref = el
                         }"
                      :is="activeComponent.scrollbarBody.name"
-                     :sidebar-api="activeComponent"></component>
+                     ></component>
         </QScrollArea>
       </div>
     </div>

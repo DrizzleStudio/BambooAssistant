@@ -3,7 +3,6 @@ import {ref} from "vue";
 export default {
     DbNav: {
         id: "DbNav",
-        // name: 'DbNav',
         title: 'Databases',
         titleLeft: {
             name: "",
@@ -22,7 +21,6 @@ export default {
     },
     DbObjects: {
         id: "DbObjects",
-        // name: 'DbNav',
         title: 'Objects',
         titleLeft: {
             name: "",
@@ -31,11 +29,11 @@ export default {
             name: "",
         },
         scrollbarTop: {
-            name: "DbNavSearch",
+            name: "DbObjectsFilter",
             ref: new ref()
         },
         scrollbarBody: {
-            name: "DbObjects",
+            name: "DbObjectsTree",
             ref: new ref()
         },
     }

@@ -8,18 +8,15 @@
 
 <script setup>
 import {ref, watch, nextTick, defineProps} from 'vue'
+import { getSidebarApi } from '/src/api/sidebar-api.js'
 
-let props = defineProps({
-  sidebarApi: {
-    required: true
-  }
-})
+let sidebarApi = getSidebarApi("DbNav")
 
 const filter = ref('')
 const filterRef = ref()
 
 watch(filter, (newVal, oldVal) => {
-      props.sidebarApi.scrollbarBody.ref.changeFilter(newVal)
+      sidebarApi.scrollbarBody.ref.changeFilter(newVal)
     }
 )
 

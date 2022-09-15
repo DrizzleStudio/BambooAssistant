@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia'
 
-export const userLeftSidebarStore = defineStore('leftSidebarStore', {
+export const useLeftSidebarStore = defineStore('leftSidebarStore', {
     state() {
         return {
             // 是否收起状态

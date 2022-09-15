@@ -14,11 +14,15 @@ import 'vxe-table/lib/style.css'
 import './style/style.css'
 // @ts-ignore
 import compRegister from './components/comp-register.js'
-import register from './register.js'
 
 import QuasarMain from './quasar-main.js'
 
+// @ts-ignore
+import globalComponentsRegister from '/src/config/global-components-register.js'
+
+
 const app = createApp(App);
+globalComponentsRegister(app);
 
 app.component("Splitpanes", Splitpanes);
 app.component("Pane", Pane);
@@ -27,6 +31,5 @@ app.use(ElementPlus, {size: 'small'})
     .use(createPinia())
     .use(VXETable)
     .use(compRegister)
-    .use(register)
     .use(QuasarMain)
     .mount("#app");

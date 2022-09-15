@@ -17,9 +17,9 @@
 <script setup>
 import {defineProps} from 'vue';
 import SidebarFrame from '/src/components/layout/SidebarFrame.vue';
-import {userLeftSidebarStore} from '/src/store/sidebar/left-sidebar-store.js';
+import {useLeftSidebarStore} from '/src/store/sidebar/left-sidebar-store.js';
 
-let leftSidebarStore = userLeftSidebarStore()
+let leftSidebarStore = useLeftSidebarStore()
 console.log(leftSidebarStore)
 </script>
 
