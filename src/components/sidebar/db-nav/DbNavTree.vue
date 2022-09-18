@@ -15,11 +15,8 @@ import {ref, nextTick, defineExpose} from 'vue'
 const filter = ref('')
 const selected = ref(null)
 
-const aa = 123123123;
-
 defineExpose({
-  changeFilter,
-  aa
+  changeFilter
 })
 
 function changeFilter(filterVal){

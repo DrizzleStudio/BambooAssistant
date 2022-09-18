@@ -14,18 +14,23 @@
       <div class="main-area box-fill-width">
         <splitpanes class="default-theme" horizontal style="height: 100%">
           <pane>
-            <splitpanes>
+            <SplitpanesR>
 
-                <!-- 中间左边区域 -->
-                <LeftSidebarArea></LeftSidebarArea>
+              <!-- 中间左边区域 -->
+              <SidebarFrame
+                  ref="_leftSidebarRef"
+                  name="leftSidebar"
+                  isHorizontal
+                  :sidebarStore="leftSidebarStore"
+              ></SidebarFrame>
 
               <!-- 中间中心区域 -->
-              <pane>
+              <PaneR :size="70" class="center-area" name="centerArea">
                 <CenterArea></CenterArea>
-              </pane>
+              </PaneR>
 
               <!-- 中间右边区域 -->
-              <pane size="10">
+              <PaneR :size="10" class="right-area" name="rightSidebar" :close-fix="true">
                 <splitpanes horizontal>
                   <pane>
                     中间右边区域上
@@ -34,8 +39,8 @@
                     中间右边区域下
                   </pane>
                 </splitpanes>
-              </pane>
-            </splitpanes>
+              </PaneR>
+            </SplitpanesR>
           </pane>
 
           <!-- 中间底部 -->
@@ -71,13 +76,15 @@
 </template>
 
 <script setup>
-import LeftSidebarArea from '/src/views/sidebar-area/LeftSidebarArea.vue'
 import CenterArea from '/src/components/layout/CenterArea.vue'
 
+import SidebarFrame from '/src/components/layout/SidebarFrame.vue';
+import {useLeftSidebarStore} from '/src/store/sidebar/left-sidebar-store.js';
+
+let leftSidebarStore = useLeftSidebarStore()
 
 </script>
 
-<style scoped>
-
+<style>
 
 </style>

@@ -6,6 +6,9 @@ import 'element-plus/dist/index.css';
 // @ts-ignore
 import {Splitpanes, Pane} from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
+
+import SplitpanesR from '/src/components/recover/SplitpanesR.vue'
+import PaneR from '/src/components/recover/PaneR.vue'
 import '@wangeditor/editor/dist/css/style.css'
 import 'xe-utils'
 import VXETable from 'vxe-table'
@@ -26,6 +29,9 @@ globalComponentsRegister(app);
 
 app.component("Splitpanes", Splitpanes);
 app.component("Pane", Pane);
+
+app.component("SplitpanesR", SplitpanesR);
+app.component("PaneR", PaneR);
 
 app.use(ElementPlus, {size: 'small'})
     .use(createPinia())
