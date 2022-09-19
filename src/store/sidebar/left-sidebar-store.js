@@ -7,8 +7,11 @@ export const useLeftSidebarStore = defineStore('leftSidebarStore', {
             isOpen: true,
             width: 20,
             activeIndex: 0,
-            activeComponentList: [
-                "DbNav", "DbObjects"
+            activeComponentListOne: [
+                "DbNav"
+            ],
+            activeComponentListTwo: [
+                // "DbObjects"
             ],
             componentListOne: [
                 "DbNav",

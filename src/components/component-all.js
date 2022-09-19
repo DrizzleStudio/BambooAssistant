@@ -4,6 +4,9 @@ export default {
     DbNav: {
         id: "DbNav",
         title: 'Databases',
+        nav:{
+
+        },
         titleLeft: {
             name: "",
         },

@@ -8,9 +8,8 @@
 
     <!-- 中间区域 -->
     <div class="middle-area box-flex box-fill-height">
-      <div class="left-bar" style="background-color: #c49fdc">
-        left
-      </div>
+      <!-- 左侧图标导航 -->
+      <SidebarNavFrame></SidebarNavFrame>
       <div class="main-area box-fill-width">
         <splitpanes class="default-theme" horizontal style="height: 100%">
           <pane>
@@ -79,6 +78,8 @@
 import CenterArea from '/src/components/layout/CenterArea.vue'
 
 import SidebarFrame from '/src/components/layout/SidebarFrame.vue';
+import SidebarNavFrame from "/src/components/layout/SidebarNavFrame.vue";
+
 import {useLeftSidebarStore} from '/src/store/sidebar/left-sidebar-store.js';
 
 let leftSidebarStore = useLeftSidebarStore()

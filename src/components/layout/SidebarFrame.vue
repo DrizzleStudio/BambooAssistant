@@ -1,7 +1,8 @@
 <template>
   <PaneR ref="paneRef" :size="sidebarStore[sizeKey]" :name="name">
     <splitpanes horizontal>
-      <SidebarItemFrame v-for="(activeComponentKey,index) in sidebarStore.activeComponentList"
+      <SidebarItemFrame v-for="(activeComponentKey) in activeComponentList"
+                        :key="activeComponentKey"
                         :activeComponent="componentAll[activeComponentKey]"
                         @close="closeItem"
       ></SidebarItemFrame>
@@ -10,7 +11,7 @@
 </template>
 
 <script setup>
-import {defineProps, defineEmits, ref, defineExpose} from 'vue';
+import {defineProps, defineEmits, ref, defineExpose, computed} from 'vue';
 import componentAll from '/src/components/component-all.js'
 import SidebarItemFrame from '/src/components/layout/SidebarItemFrame.vue'
 
@@ -32,6 +33,11 @@ let props = defineProps({
   }
 })
 
+let activeComponentList = computed(() => {
+  let result = [].concat(props.sidebarStore.activeComponentListOne);
+  result = result.concat(props.sidebarStore.activeComponentListTwo);
+  return result;
+})
 
 let paneRef = ref()
 
