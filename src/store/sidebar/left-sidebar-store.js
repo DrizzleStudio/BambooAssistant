@@ -11,7 +11,7 @@ export const useLeftSidebarStore = defineStore('leftSidebarStore', {
                 "DbNav"
             ],
             activeComponentListTwo: [
-                // "DbObjects"
+                "DbObjects"
             ],
             componentListOne: [
                 "DbNav",

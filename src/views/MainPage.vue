@@ -9,7 +9,7 @@
     <!-- 中间区域 -->
     <div class="middle-area box-flex box-fill-height">
       <!-- 左侧图标导航 -->
-      <SidebarNavFrame></SidebarNavFrame>
+      <SidebarNavFrame :sidebarStore="leftSidebarStore"></SidebarNavFrame>
       <div class="main-area box-fill-width">
         <splitpanes class="default-theme" horizontal style="height: 100%">
           <pane>

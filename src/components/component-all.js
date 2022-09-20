@@ -3,10 +3,11 @@ import {ref} from "vue";
 export default {
     DbNav: {
         id: "DbNav",
-        title: 'Databases',
-        nav:{
-
+        nav: {
+            icon: "database",
+            label: "" // 暂时不用文字
         },
+        title: 'Databases',
         titleLeft: {
             name: "",
         },
@@ -24,6 +25,10 @@ export default {
     },
     DbObjects: {
         id: "DbObjects",
+        nav: {
+            icon: "dataset",
+            label: "" // 暂时不用文字
+        },
         title: 'Objects',
         titleLeft: {
             name: "",
