@@ -1,17 +1,17 @@
 <template>
   <PaneR ref="paneRef" :size="sidebarStore[sizeKey]" :name="name">
     <splitpanes horizontal>
-      <SidebarItemFrame v-for="(activeComponentKey) in activeComponentList"
+      <SidebarItemFrame v-for="(activeComponentKey) in sidebarStore.activeComponentList"
                         :key="activeComponentKey"
                         :activeComponent="componentAll[activeComponentKey]"
-                        @close="closeItem"
+                        @close="removeItem"
       ></SidebarItemFrame>
     </splitpanes>
   </PaneR>
 </template>
 
 <script setup>
-import {defineProps, defineEmits, ref, defineExpose, computed} from 'vue';
+import {defineProps, ref, onMounted} from 'vue';
 import componentAll from '/src/components/component-all.js'
 import SidebarItemFrame from '/src/components/layout/SidebarItemFrame.vue'
 
@@ -33,15 +33,18 @@ let props = defineProps({
   }
 })
 
-let activeComponentList = computed(() => {
-  let result = [].concat(props.sidebarStore.activeComponentListOne);
-  result = result.concat(props.sidebarStore.activeComponentListTwo);
-  return result;
+onMounted(() => {
+  initSidebarStore();
 })
+
+function initSidebarStore() {
+  props.sidebarStore.addSidebarItem = addItem;
+  props.sidebarStore.removeSidebarItem = removeItem;
+}
 
 let paneRef = ref()
 
-function closeItem(id) {
+function removeItem(id) {
   let activeComponentList = props.sidebarStore.activeComponentList;
   let index = activeComponentList.indexOf(id);
   activeComponentList.splice(index, 1);
@@ -50,8 +53,24 @@ function closeItem(id) {
   }
 }
 
-function getSize() {
-  return props.sidebarStore[props.sizeKey];
+function addItem(id) {
+  let sidebarStore = props.sidebarStore;
+  if (sidebarStore.activeComponentList.length < 1) {
+    sidebarStore.activeComponentList.push(id);
+  } else {
+    let sidebarStore = props.sidebarStore;
+    let sidebarList = [].concat(props.sidebarStore.componentListOne, props.sidebarStore.componentListTwo);
+    let index = sidebarStore.componentListOne.indexOf(id);
+    let activeId;
+    for (let activeIndex in sidebarStore.activeComponentList) {
+      activeId = sidebarStore.activeComponentList[activeIndex];
+      if (sidebarList.indexOf(activeId) > index) {
+        sidebarStore.activeComponentList.splice(activeIndex + 1, 0, id);
+        return
+      }
+    }
+    sidebarStore.activeComponentList.push(id);
+  }
 }
 
 </script>

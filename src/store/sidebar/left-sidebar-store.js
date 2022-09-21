@@ -3,21 +3,19 @@ import {defineStore} from 'pinia'
 export const useLeftSidebarStore = defineStore('leftSidebarStore', {
     state() {
         return {
-            // 是否收起状态
-            isOpen: true,
             width: 20,
             activeIndex: 0,
-            activeComponentListOne: [
-                "DbNav"
-            ],
-            activeComponentListTwo: [
-                "DbObjects"
+            activeComponentList: [
+                "DbNav", "DbObjects"
             ],
             componentListOne: [
                 "DbNav",
+            ],
+            componentListTwo: [
                 "DbObjects",
             ],
-            componentListTwo: []
+            addSidebarItem: null,
+            removeSidebarItem: null
         }
     },
     getters: {
@@ -25,13 +23,5 @@ export const useLeftSidebarStore = defineStore('leftSidebarStore', {
             return state.componentList[state.activeIndex];
         }
     },
-    actions: {
-        closeSidebar() {
-            this.isClosed = false;
-        },
-
-        openSidebar() {
-            this.isClosed = true;
-        },
-    }
+    actions: {}
 })

@@ -6,22 +6,27 @@
         dense
         switch-indicator
     >
-      <SidebarNavItemFrame v-for="(activeComponentKey) in sidebarStore.activeComponentListOne" :component-info="componentAll[activeComponentKey]"/>
+      <SidebarNavItemFrame v-for="(activeComponentKey) in sidebarStore.componentListOne"
+                           :component-info="componentAll[activeComponentKey]"
+                           @click="sidebarNavItemClick(activeComponentKey)"
+      />
     </QTabs>
     <QTabs
         class="sidebar-nav-two"
-        v-model="tabValueOne"
+        v-model="tabValueTwo"
         vertical
         dense
         switch-indicator
     >
-      <SidebarNavItemFrame v-for="(activeComponentKey) in sidebarStore.activeComponentListTwo" :component-info="componentAll[activeComponentKey]"/>
+      <SidebarNavItemFrame v-for="(activeComponentKey) in sidebarStore.componentListTwo"
+                           :component-info="componentAll[activeComponentKey]"
+                           @click="sidebarNavItemClick(activeComponentKey)"/>
     </QTabs>
   </div>
 </template>
 
 <script setup>
-import {ref , defineProps} from 'vue';
+import {ref, defineProps} from 'vue';
 import componentAll from '/src/components/component-all.js';
 import SidebarNavItemFrame from './SidebarNavItemFrame.vue';
 
@@ -34,6 +39,14 @@ let props = defineProps({
 let tabValueOne = ref();
 let tabValueTwo = ref();
 
+function sidebarNavItemClick(componentName) {
+  let sidebarStore = props.sidebarStore;
+  if (sidebarStore.activeComponentList.indexOf(componentName) > -1) {
+    sidebarStore.removeSidebarItem(componentName);
+  } else {
+    sidebarStore.addSidebarItem(componentName)
+  }
+}
 
 </script>
 
