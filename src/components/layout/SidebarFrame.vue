@@ -57,15 +57,16 @@ function addItem(id) {
   let sidebarStore = props.sidebarStore;
   if (sidebarStore.activeComponentList.length < 1) {
     sidebarStore.activeComponentList.push(id);
+    paneRef.value.openPane();
   } else {
     let sidebarStore = props.sidebarStore;
     let sidebarList = [].concat(props.sidebarStore.componentListOne, props.sidebarStore.componentListTwo);
-    let index = sidebarStore.componentListOne.indexOf(id);
+    let index = sidebarList.indexOf(id);
     let activeId;
     for (let activeIndex in sidebarStore.activeComponentList) {
       activeId = sidebarStore.activeComponentList[activeIndex];
       if (sidebarList.indexOf(activeId) > index) {
-        sidebarStore.activeComponentList.splice(activeIndex + 1, 0, id);
+        sidebarStore.activeComponentList.splice(activeIndex, 0, id);
         return
       }
     }

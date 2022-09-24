@@ -79,6 +79,9 @@ provide("closePane", (name) => {
   _splitpanesRef.value.panes[index].size = 0
 })
 
+provide("openPane", (name) => {
+  debugger
+})
 
 // TODO
 function parseLengthStr(lengthStr) {

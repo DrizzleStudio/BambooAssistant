@@ -19,7 +19,7 @@ let props = defineProps({
 let _paneRef = ref()
 
 defineExpose({
-  closePane
+  closePane,openPane
 })
 
 let closePaneInject = inject("closePane");
@@ -28,6 +28,12 @@ let _class = ref("")
 
 function closePane() {
   closePaneInject(props.name);
+}
+
+
+let openPaneInject = inject("openPane");
+function openPane() {
+  openPaneInject(props.name);
 }
 
 let registerPane = inject("registerPane");
