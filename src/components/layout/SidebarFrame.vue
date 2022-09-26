@@ -1,5 +1,5 @@
 <template>
-  <PaneR ref="paneRef" :size="sidebarStore[sizeKey]" :name="name">
+  <PaneR ref="paneRef" :size="sidebarStore.size" :name="name">
     <splitpanes horizontal>
       <SidebarItemFrame v-for="(activeComponentKey) in sidebarStore.activeComponentList"
                         :key="activeComponentKey"
@@ -22,10 +22,6 @@ let props = defineProps({
   isHorizontal: {
     default: false,
     type: Boolean
-  },
-  sizeKey: {
-    type: String,
-    default: 'width'
   },
   name: {
     type: String,
@@ -57,7 +53,7 @@ function addItem(id) {
   let sidebarStore = props.sidebarStore;
   if (sidebarStore.activeComponentList.length < 1) {
     sidebarStore.activeComponentList.push(id);
-    paneRef.value.openPane();
+    paneRef.value.openPane(props.sidebarStore.size);
   } else {
     let sidebarStore = props.sidebarStore;
     let sidebarList = [].concat(props.sidebarStore.componentListOne, props.sidebarStore.componentListTwo);

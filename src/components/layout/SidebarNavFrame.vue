@@ -8,7 +8,7 @@
     >
       <SidebarNavItemFrame v-for="(activeComponentKey) in sidebarStore.componentListOne"
                            :component-info="componentAll[activeComponentKey]"
-                           @click="sidebarNavItemClick(activeComponentKey)"
+                           @click="sidebarNavItemClick(0,activeComponentKey)"
       />
     </QTabs>
     <QTabs
@@ -20,13 +20,13 @@
     >
       <SidebarNavItemFrame v-for="(activeComponentKey) in sidebarStore.componentListTwo"
                            :component-info="componentAll[activeComponentKey]"
-                           @click="sidebarNavItemClick(activeComponentKey)"/>
+                           @click="sidebarNavItemClick(1,activeComponentKey)"/>
     </QTabs>
   </div>
 </template>
 
 <script setup>
-import {ref, defineProps} from 'vue';
+import {ref, defineProps, onMounted} from 'vue';
 import componentAll from '/src/components/component-all.js';
 import SidebarNavItemFrame from './SidebarNavItemFrame.vue';
 
@@ -39,12 +39,33 @@ let props = defineProps({
 let tabValueOne = ref();
 let tabValueTwo = ref();
 
-function sidebarNavItemClick(componentName) {
+onMounted(() => {
+  props.sidebarStore.activeComponentList.forEach((name) => {
+    if (props.sidebarStore.componentListOne.indexOf(name) > -1) {
+      tabValueOne.value = name;
+    }
+    if (props.sidebarStore.componentListTwo.indexOf(name) > -1) {
+      tabValueTwo.value = name;
+    }
+  })
+})
+
+function sidebarNavItemClick(sidebarNavIndex, componentName) {
   let sidebarStore = props.sidebarStore;
   if (sidebarStore.activeComponentList.indexOf(componentName) > -1) {
     sidebarStore.removeSidebarItem(componentName);
+    if (sidebarNavIndex == 0) {
+      tabValueOne.value = "";
+    } else {
+      tabValueTwo.value = "";
+    }
   } else {
-    sidebarStore.addSidebarItem(componentName)
+    sidebarStore.addSidebarItem(componentName);
+    if (sidebarNavIndex == 0) {
+      tabValueOne.value = componentName
+    } else {
+      tabValueTwo.value = componentName
+    }
   }
 }
 

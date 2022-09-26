@@ -32,8 +32,8 @@ function closePane() {
 
 
 let openPaneInject = inject("openPane");
-function openPane() {
-  openPaneInject(props.name);
+function openPane(size) {
+  openPaneInject(props.name,size);
 }
 
 let registerPane = inject("registerPane");

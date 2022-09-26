@@ -3,7 +3,7 @@ import {defineStore} from 'pinia'
 export const useLeftSidebarStore = defineStore('leftSidebarStore', {
     state() {
         return {
-            width: 20,
+            size: 20,
             activeIndex: 0,
             activeComponentList: [
                 "DbNav", "DbObjects"

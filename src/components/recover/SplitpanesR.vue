@@ -1,22 +1,40 @@
 <template>
-  <splitpanes ref="_splitpanesRef" v-bind="$attrs">
+  <splitpanes ref="_splitpanesRef" v-bind="$attrs" @resized="resized">
     <slot></slot>
   </splitpanes>
 </template>
 
 <script setup>
-import {provide, ref, nextTick} from 'vue';
+import {provide, ref, nextTick, onMounted, defineEmits} from 'vue';
 
-let paneNameOriginalList = []
-let paneNameList = []
-let paneListObj = {}
+let _splitpanesRef = ref()
+
+let paneNameOriginalList = [];
+let paneNameList = [];
+let paneListObj = {};
 provide("registerPane", (pane) => {
   paneNameList.push(pane.name);
   paneNameOriginalList.push(pane.name);
   paneListObj[pane.name] = pane;
 })
 
-let _splitpanesRef = ref()
+
+let sizeList = [];
+onMounted(() => {
+  _splitpanesRef.value.panes.forEach((pane) => {
+    sizeList.push(pane.size);
+  })
+})
+
+let emits = defineEmits(["resized"]);
+
+function resized(itemList) {
+  sizeList = [];
+  itemList.forEach((item) => {
+    sizeList.push(item.size);
+  })
+  emits("resized", sizeList)
+}
 
 function getLengthName() {
   if (_splitpanesRef.value.horizontal) {
@@ -68,8 +86,12 @@ provide("closePane", (name) => {
   })
   let addLength = targetItemLength / modifyNum;
   let length;
+  let modifyOriginalIndex;
   nextTick(() => {
     modifyPaneList.forEach((modifyPane) => {
+      modifyOriginalIndex = paneNameOriginalList.indexOf(modifyPane.name);
+      sizeList[modifyOriginalIndex] = sizeList[modifyOriginalIndex] + addLength;
+
       length = parseLengthStr(modifyPane._ref.value.$data.style[lengthName]);
       if (addLengthItem.name === modifyPane.name) {
         modifyPane._ref.value.$data.style[lengthName] = `calc(${length + addLength}% + 7px)`;
@@ -80,6 +102,7 @@ provide("closePane", (name) => {
   })
 
   _splitpanesRef.value.panes[index].size = 0;
+  sizeList[index] = 0;
 })
 
 function getInsertIndex(name) {
@@ -102,7 +125,7 @@ function getInsertIndex(name) {
   return paneNameList.length + 1;
 }
 
-provide("openPane", (name) => {
+provide("openPane", (name, size) => {
   let lengthName = getLengthName();
   let index = getInsertIndex(name);
   let originalIndex = paneNameOriginalList.indexOf(name);
@@ -119,7 +142,6 @@ provide("openPane", (name) => {
   modifyClassItem._class.value = "";
 
   let targetItem = paneListObj[name];
-  let targetItemLength = 20;
 
   let modifyNum = 0;
   let pane;
@@ -131,20 +153,26 @@ provide("openPane", (name) => {
       modifyNum++
     }
   })
-  let addLength = targetItemLength / modifyNum;
+  let addLength = size / modifyNum;
   let length;
   let modifyOriginalIndex;
   nextTick(() => {
     modifyPaneList.forEach((modifyPane) => {
+      modifyOriginalIndex = paneNameOriginalList.indexOf(modifyPane.name);
+      sizeList[modifyOriginalIndex] = sizeList[modifyOriginalIndex] - addLength;
+      _splitpanesRef.value.panes[modifyOriginalIndex].size = sizeList[modifyOriginalIndex];
+
       length = parseLengthStr(modifyPane._ref.value.$data.style[lengthName]);
       if (addLengthItem.name === modifyPane.name) {
         modifyPane._ref.value.$data.style[lengthName] = `calc(${length - addLength}% - 7px)`;
       } else {
         modifyPane._ref.value.$data.style[lengthName] = `${length - addLength}%`;
       }
-      _splitpanesRef.value.panes[originalIndex].size = targetItemLength;
-      paneNameList.splice(index, 0, name);
     })
+
+    _splitpanesRef.value.panes[originalIndex].size = size;
+    sizeList[originalIndex] = size;
+    paneNameList.splice(index, 0, name);
   })
 })
 
