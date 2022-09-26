@@ -7,10 +7,12 @@
 <script setup>
 import {provide, ref, nextTick} from 'vue';
 
+let paneNameOriginalList = []
 let paneNameList = []
 let paneListObj = {}
 provide("registerPane", (pane) => {
   paneNameList.push(pane.name);
+  paneNameOriginalList.push(pane.name);
   paneListObj[pane.name] = pane;
 })
 
@@ -64,7 +66,6 @@ provide("closePane", (name) => {
   })
   let addLength = targetItemLength / modifyNum;
   let length;
-
   nextTick(() => {
     modifyPaneList.forEach((modifyPane) => {
       length = parseLengthStr(modifyPane._ref.value.$data.style[lengthName]);
@@ -76,11 +77,73 @@ provide("closePane", (name) => {
     })
   })
 
-  _splitpanesRef.value.panes[index].size = 0
+  _splitpanesRef.value.panes[index].size = 0;
 })
 
+function getInsertIndex(name) {
+  let index = paneNameOriginalList.indexOf(name);
+  if (index == paneNameOriginalList.length) {
+    return paneNameList.length + 1;
+  }
+
+  let behindName;
+  let behindIndex;
+  do {
+    index += 1;
+    behindName = paneNameOriginalList[index];
+    behindIndex = paneNameList.indexOf(behindName);
+    if (behindIndex > -1) {
+      return behindIndex;
+    }
+  } while (index < paneNameOriginalList.length);
+
+  return paneNameList.length + 1;
+}
+
 provide("openPane", (name) => {
-  debugger
+  let lengthName = getLengthName();
+  let index = getInsertIndex(name);
+
+  let modifyClassItem;
+  let addLengthItem;
+  if (index == paneNameList.length) {
+    modifyClassItem = paneListObj[paneNameList[index - 1]];
+    addLengthItem = modifyClassItem;
+  } else {
+    modifyClassItem = paneListObj[name];
+    addLengthItem = paneListObj[paneNameList[index + 1]];
+  }
+  modifyClassItem._class.value = "";
+
+  let targetItem = paneListObj[name];
+  let targetItemLength = 20;
+
+  let modifyNum = 0;
+  let pane;
+  let modifyPaneList = [];
+  paneNameList.forEach((paneName) => {
+    pane = paneListObj[paneName];
+    if (!pane.closeFix) {
+      modifyPaneList.push(pane)
+      modifyNum++
+    }
+  })
+  let addLength = targetItemLength / modifyNum;
+  let length;
+  nextTick(() => {
+    modifyPaneList.forEach((modifyPane) => {
+      debugger
+      length = parseLengthStr(modifyPane._ref.value.$data.style[lengthName]);
+      if (addLengthItem.name === modifyPane.name) {
+        modifyPane._ref.value.$data.style[lengthName] = `calc(${length - addLength}% - 7px)`;
+      } else {
+        modifyPane._ref.value.$data.style[lengthName] = `${length - addLength}%`;
+      }
+    })
+  })
+
+  _splitpanesRef.value.panes[index].size = targetItemLength;
+  paneNameList.splice(index,0,name);
 })
 
 // TODO
