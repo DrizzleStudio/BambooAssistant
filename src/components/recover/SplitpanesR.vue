@@ -27,11 +27,13 @@ function getLengthName() {
 }
 
 /**
- * 关闭Pane需要两个操作
+ * 关闭Pane需要三个操作
  * 1、隐藏后面的 splitter，如果当前 pane位于最后，则隐藏前一个。同时需要将splitter的长度给后一个或前一个 pane
  * 实现：通过在当前元素或前一个（pane位于最后时）添加 class：hide-splitter ，并设置 display：none。
  *
  * 2、将当前目标 pane宽度或高度（后面统称长度）设为 0，并将目标元素的长度分配给其余 closeFix=false 的 pane。
+ *
+ * 3、修改原splitpanes中每个pane的size
  *
  */
 provide("closePane", (name) => {
@@ -103,15 +105,16 @@ function getInsertIndex(name) {
 provide("openPane", (name) => {
   let lengthName = getLengthName();
   let index = getInsertIndex(name);
+  let originalIndex = paneNameOriginalList.indexOf(name);
 
   let modifyClassItem;
   let addLengthItem;
-  if (index == paneNameList.length) {
-    modifyClassItem = paneListObj[paneNameList[index - 1]];
+  if (index > paneNameList.length) {
+    modifyClassItem = paneListObj[paneNameList[index]];
     addLengthItem = modifyClassItem;
   } else {
     modifyClassItem = paneListObj[name];
-    addLengthItem = paneListObj[paneNameList[index + 1]];
+    addLengthItem = paneListObj[paneNameList[index]];
   }
   modifyClassItem._class.value = "";
 
@@ -130,20 +133,19 @@ provide("openPane", (name) => {
   })
   let addLength = targetItemLength / modifyNum;
   let length;
+  let modifyOriginalIndex;
   nextTick(() => {
     modifyPaneList.forEach((modifyPane) => {
-      debugger
       length = parseLengthStr(modifyPane._ref.value.$data.style[lengthName]);
       if (addLengthItem.name === modifyPane.name) {
         modifyPane._ref.value.$data.style[lengthName] = `calc(${length - addLength}% - 7px)`;
       } else {
         modifyPane._ref.value.$data.style[lengthName] = `${length - addLength}%`;
       }
+      _splitpanesRef.value.panes[originalIndex].size = targetItemLength;
+      paneNameList.splice(index, 0, name);
     })
   })
-
-  _splitpanesRef.value.panes[index].size = targetItemLength;
-  paneNameList.splice(index,0,name);
 })
 
 // TODO
