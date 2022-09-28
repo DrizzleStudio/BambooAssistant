@@ -5,15 +5,17 @@ export const useCenterAreaStore = defineStore('centerAreaStore', {
         return {
             size: 70,
             activeIndex: 0,
-            activeComponentName:"",
-            componentList:[
+            activeComponentName: "",
+            componentList: [
                 {
-                    name:"SqlEdit"
+                    name: "SqlEdit",
+                    label: "",
+                    tabId: "SqlEdit-01",
+                    data: null,
                 }
             ]
         }
     },
-    getters: {
-    },
+    getters: {},
     actions: {}
 })
