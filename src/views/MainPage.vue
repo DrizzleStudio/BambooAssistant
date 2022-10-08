@@ -24,9 +24,7 @@
               ></SidebarFrame>
 
               <!-- 中间中心区域 -->
-              <PaneR :size="70" class="center-area" name="centerArea">
-                <CenterArea></CenterArea>
-              </PaneR>
+              <CenterArea></CenterArea>
 
               <!-- 中间右边区域 -->
               <PaneR :size="10" class="right-area" name="rightSidebar" :close-fix="true">
