@@ -1,13 +1,17 @@
 <template>
-  <PaneR :size="70" class="center-area" name="centerArea">
+  <PaneR :size="centerAreaStore.size" class="center-area" name="centerArea">
     <QTabs
-        v-model="tab"
+        v-model="centerAreaStore.activeComponentName"
         dense
         align="left"
         class="text-primary"
         outside-arrows
     >
-      <QTab name="mails" label="新建查询-01"/>
+      <QTab v-for="component in centerAreaStore.componentList"
+            :key="component.name"
+            :name="component.name"
+            :label="component.label"/>
+
       <QTab name="alarms" label="sys_user"/>
       <QTab name="movies" label="sys_permission"/>
       <QTab name="movies1" label="sys_role"/>
@@ -31,15 +35,15 @@
       <QTab name="movies19" label="Movies19"/>
     </QTabs>
 
-    <component :is="componentName"></component>
-<!--    <SqlEdit></SqlEdit>-->
+    <component :is="centerAreaStore.activeComponentName"></component>
   </PaneR>
 </template>
 
 <script setup>
 import {ref} from 'vue';
-import SqlEdit from '/src/components/center-area/SqlEdit.vue';
+import {useCenterAreaStore} from '/src/store/center-area-store.js';
 
+let centerAreaStore = useCenterAreaStore();
 
 let tab = ref('mails');
 

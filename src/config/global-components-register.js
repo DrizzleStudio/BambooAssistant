@@ -9,7 +9,6 @@ export default (app) => {
     }
 
     for (const path in centerModules) {
-        // debugger
         // for (let compName in modules[path]) {
             app.component(centerModules[path].default.__name, centerModules[path].default);
         // }
