@@ -1,19 +1,17 @@
 import {defineStore} from 'pinia'
 
-export const useLeftSidebarStore = defineStore('leftSidebarStore', {
+export const useRightSidebarStore = defineStore('rightSidebarStore', {
     state() {
         return {
             size: 20,
             activeIndex: 0,
             activeComponentList: [
-                "DbNav"
+                "DbObjects"
             ],
             componentListOne: [
-                "DbNav",
+                "DbObjects"
             ],
-            componentListTwo: [
-
-            ],
+            componentListTwo: [],
             addSidebarItem: null,
             removeSidebarItem: null
         }

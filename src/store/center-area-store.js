@@ -3,7 +3,7 @@ import {defineStore} from 'pinia'
 export const useCenterAreaStore = defineStore('centerAreaStore', {
     state() {
         return {
-            size: 70,
+            size: 60,
             activeIndex: 0,
             activeComponentName: "SqlEdit",
             componentList: [

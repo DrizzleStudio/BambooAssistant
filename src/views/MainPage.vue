@@ -9,7 +9,7 @@
     <!-- 中间区域 -->
     <div class="middle-area box-flex box-fill-height">
       <!-- 左侧图标导航 -->
-      <SidebarNavFrame :sidebarStore="leftSidebarStore"></SidebarNavFrame>
+      <SidebarNavFrame :sidebarStore="leftSidebarStore" switch-indicator></SidebarNavFrame>
       <div class="main-area box-fill-width">
         <splitpanes class="default-theme" horizontal style="height: 100%">
           <pane>
@@ -27,16 +27,12 @@
               <CenterArea></CenterArea>
 
               <!-- 中间右边区域 -->
-              <PaneR :size="10" class="right-area" name="rightSidebar" :close-fix="true">
-                <splitpanes horizontal>
-                  <pane>
-                    中间右边区域上
-                  </pane>
-                  <pane>
-                    中间右边区域下
-                  </pane>
-                </splitpanes>
-              </PaneR>
+              <SidebarFrame
+                  ref="_rightSidebarRef"
+                  name="rightSidebar"
+                  isHorizontal
+                  :sidebarStore="rightSidebarStore"
+              ></SidebarFrame>
             </SplitpanesR>
           </pane>
 
@@ -53,9 +49,8 @@
           </pane>
         </splitpanes>
       </div>
-      <div class="right-bar" style="background-color: #c2a1b8">
-        right
-      </div>
+      <!-- 右侧图标导航 -->
+      <SidebarNavFrame :sidebarStore="rightSidebarStore"></SidebarNavFrame>
     </div>
 
     <!-- 底部区域 -->
@@ -79,8 +74,10 @@ import SidebarFrame from '/src/components/layout/SidebarFrame.vue';
 import SidebarNavFrame from "/src/components/layout/SidebarNavFrame.vue";
 
 import {useLeftSidebarStore} from '/src/store/sidebar/left-sidebar-store.js';
+import {useRightSidebarStore} from '/src/store/sidebar/right-sidebar-store.js';
 
 let leftSidebarStore = useLeftSidebarStore()
+let rightSidebarStore = useRightSidebarStore()
 
 </script>
 

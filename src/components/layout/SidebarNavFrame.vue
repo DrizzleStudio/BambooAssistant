@@ -4,7 +4,7 @@
         v-model="tabValueOne"
         vertical
         dense
-        switch-indicator
+        :switch-indicator="switchIndicator"
     >
       <SidebarNavItemFrame v-for="(activeComponentKey) in sidebarStore.componentListOne"
                            :component-info="componentAll[activeComponentKey]"
@@ -16,7 +16,7 @@
         v-model="tabValueTwo"
         vertical
         dense
-        switch-indicator
+        :switch-indicator="switchIndicator"
     >
       <SidebarNavItemFrame v-for="(activeComponentKey) in sidebarStore.componentListTwo"
                            :component-info="componentAll[activeComponentKey]"
@@ -33,6 +33,9 @@ import SidebarNavItemFrame from './SidebarNavItemFrame.vue';
 let props = defineProps({
   sidebarStore: {
     required: true
+  },
+  switchIndicator: {
+    default: false
   }
 });
 
